@@ -41,3 +41,4 @@ app.*.map.json
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+eight_bit_penalty/pubspec.lock
