@@ -1,3 +1,4 @@
+import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class Kicker extends StatefulWidget {
@@ -10,8 +11,8 @@ class Kicker extends StatefulWidget {
 class _KickerState extends State<Kicker> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Kicker'),
+    return MyScaffold(
+      body: Text('Kicker'),
     );
   }
 }

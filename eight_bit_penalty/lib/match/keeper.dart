@@ -1,3 +1,4 @@
+import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class Keeper extends StatefulWidget {
@@ -10,8 +11,8 @@ class Keeper extends StatefulWidget {
 class _KeeperState extends State<Keeper> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Keeper'),
+    return MyScaffold(
+      body: Text('Keeper'),
     );
   }
 }
