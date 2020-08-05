@@ -1,4 +1,4 @@
-import 'package:eight_bit_penalty/splash_screen.dart';
+import 'package:eight_bit_penalty/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: AppBarTheme(color: Colors.black)),
-      home: SplashScreen(),
+      home: SplashPage(),
     );
   }
 }

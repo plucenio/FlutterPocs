@@ -1,14 +1,14 @@
 import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
 
-class Keeper extends StatefulWidget {
-  Keeper({Key key}) : super(key: key);
+class KeeperMatchPage extends StatefulWidget {
+  KeeperMatchPage({Key key}) : super(key: key);
 
   @override
-  _KeeperState createState() => _KeeperState();
+  _KeeperMatchPageState createState() => _KeeperMatchPageState();
 }
 
-class _KeeperState extends State<Keeper> {
+class _KeeperMatchPageState extends State<KeeperMatchPage> {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(

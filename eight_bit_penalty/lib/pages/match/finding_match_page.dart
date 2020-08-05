@@ -1,14 +1,14 @@
-import 'package:eight_bit_penalty/found_opponent.dart';
+import 'package:eight_bit_penalty/pages/match/found_opponent_page.dart';
 import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FindingMatch extends StatefulWidget {
+class FindingMatchPage extends StatefulWidget {
   @override
-  _FindingMatchState createState() => _FindingMatchState();
+  _FindingMatchPageState createState() => _FindingMatchPageState();
 }
 
-class _FindingMatchState extends State<FindingMatch> {
+class _FindingMatchPageState extends State<FindingMatchPage> {
   @override
   void initState() {
     super.initState();
@@ -20,7 +20,7 @@ class _FindingMatchState extends State<FindingMatch> {
       Navigator.pushReplacement(
           context,
           CupertinoPageRoute(
-            builder: (context) => FoundOpponent(),
+            builder: (context) => FoundOpponentPage(),
           ));
     });
   }

@@ -1,13 +1,14 @@
-import 'package:eight_bit_penalty/home_page.dart';
-import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
+import '../../widgets/my_scaffold.dart';
+import '../home/home_page.dart';
+
+class SplashPage extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
@@ -18,9 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
     return await Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        PageRouteBuilder(pageBuilder: (BuildContext context,
-            Animation animation, Animation secondaryAnimation) {
-          return MyHomePage();
+        PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
+          return HomePage();
         }),
       );
     });

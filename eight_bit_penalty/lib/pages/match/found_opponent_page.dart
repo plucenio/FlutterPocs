@@ -1,14 +1,14 @@
 import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
 
-class FoundOpponent extends StatefulWidget {
-  FoundOpponent({Key key}) : super(key: key);
+class FoundOpponentPage extends StatefulWidget {
+  FoundOpponentPage({Key key}) : super(key: key);
 
   @override
-  _FoundOpponentState createState() => _FoundOpponentState();
+  _FoundOpponentPageState createState() => _FoundOpponentPageState();
 }
 
-class _FoundOpponentState extends State<FoundOpponent> {
+class _FoundOpponentPageState extends State<FoundOpponentPage> {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(

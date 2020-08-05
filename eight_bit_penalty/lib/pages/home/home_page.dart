@@ -1,18 +1,18 @@
-import 'package:eight_bit_penalty/finding_match.dart';
+import 'package:eight_bit_penalty/pages/match/finding_match_page.dart';
 import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   void onPressedMethod() {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => FindingMatch(),
+          builder: (context) => FindingMatchPage(),
         ));
   }
 
