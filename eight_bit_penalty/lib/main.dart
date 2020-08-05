@@ -1,5 +1,6 @@
-import 'package:eight_bit_penalty/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+
+import 'pages/splash/splash_page.dart';
 
 void main() {
   runApp(MyApp());

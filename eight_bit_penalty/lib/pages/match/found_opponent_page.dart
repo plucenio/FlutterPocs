@@ -1,5 +1,6 @@
-import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/my_scaffold.dart';
 
 class FoundOpponentPage extends StatefulWidget {
   FoundOpponentPage({Key key}) : super(key: key);

@@ -1,7 +1,8 @@
-import 'package:eight_bit_penalty/pages/match/found_opponent_page.dart';
-import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/my_scaffold.dart';
+import 'found_opponent_page.dart';
 
 class FindingMatchPage extends StatefulWidget {
   @override
