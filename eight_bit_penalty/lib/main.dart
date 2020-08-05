@@ -1,6 +1,6 @@
-import 'package:eight_bit_penalty/pages/match/keeper_match_page.dart';
 import 'package:flutter/material.dart';
 
+import 'pages/match/kicker_match_page.dart';
 import 'pages/splash/splash_page.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
             appBarTheme: AppBarTheme(color: Colors.black)),
-        //home: SplashPage(),
-        home: KeeperMatchPage());
+        home: SplashPage());
+    //home: KickerMatchPage());
   }
 }

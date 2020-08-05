@@ -1,12 +1,12 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-class KeeperPositionWidget extends StatelessWidget {
+class GoalPositionWidget extends StatelessWidget {
   final int position;
+  final Function action;
 
-  const KeeperPositionWidget({Key key, @required this.position})
+  const GoalPositionWidget(
+      {Key key, @required this.position, @required this.action})
       : super(key: key);
 
   @override
@@ -20,19 +20,7 @@ class KeeperPositionWidget extends StatelessWidget {
             color: Colors.white,
             child: Text('$position'),
             elevation: 0,
-            onPressed: () {
-              var randomKick = Random().nextInt(7) + 1;
-              var result =
-                  randomKick == position ? 'Você defendeu!' : 'Foi Gol';
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    content: Text(result),
-                  );
-                },
-              );
-            },
+            onPressed: action.call,
           ),
           decoration: BoxDecoration(border: Border.all(width: 1)),
         ),

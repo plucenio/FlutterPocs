@@ -26,7 +26,7 @@ class _Player1ScoreWidgetState extends State<Player1ScoreWidget> {
 
     var _defaultBall = Image.asset(
       'assets/images/ball.png',
-      color: Colors.grey,
+      color: Colors.blue,
       height: _ballSize,
       width: _ballSize,
     );
