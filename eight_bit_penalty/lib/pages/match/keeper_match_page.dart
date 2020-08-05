@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/my_scaffold.dart';
+import 'widgets/goal_keeper_widget.dart';
+import 'widgets/score_widget.dart';
 
 class KeeperMatchPage extends StatefulWidget {
   KeeperMatchPage({Key key}) : super(key: key);
@@ -18,112 +20,20 @@ class _KeeperMatchPageState extends State<KeeperMatchPage> {
         ),
         body: Column(
           children: [
+            ScoreWidget(),
             Expanded(
-              flex: 1,
-              child: Container(
-                width: double.infinity,
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            'assets/images/ball.png',
-                            color: Colors.grey,
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset(
-                            'assets/images/ball.png',
-                            color: Colors.grey,
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset(
-                            'assets/images/ball.png',
-                            color: Colors.grey,
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset(
-                            'assets/images/ball.png',
-                            color: Colors.grey,
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset(
-                            'assets/images/ball.png',
-                            color: Colors.grey,
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            'assets/images/ball.png',
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset(
-                            'assets/images/ball.png',
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset(
-                            'assets/images/ball.png',
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset(
-                            'assets/images/ball.png',
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset(
-                            'assets/images/ball.png',
-                            width: MediaQuery.of(context).size.width * 0.02,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 5,
+              flex: 9,
               child: Container(
                 width: double.infinity,
                 color: Colors.green,
-                child: Text('Campo'),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(child: Text('Campo')),
+                    // Goleira
+                    GoalKeeperWidget(),
+                  ],
+                ),
               ),
             ),
           ],
