@@ -29,7 +29,15 @@ class _FindingMatchPageState extends State<FindingMatchPage> {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
-      body: Text('Searching an opponent'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            Text('Searching an opponent'),
+          ],
+        ),
+      ),
     );
   }
 }
