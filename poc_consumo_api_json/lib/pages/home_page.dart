@@ -19,13 +19,21 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  Future<Widget> getHospitalNames() async {
+  Future<Widget> getHospitals() async {
+    int position = 1;
     return Container(
       child: Column(children: [
         for (var i
             in await _apiService.fetchPost().then((value) => value.hospitals))
           Row(
-            children: [Text(i.name), Spacer(), Text(i.score.toString())],
+            children: [
+              Text((position++).toString()),
+              Text("º"),
+              Spacer(),
+              Text(i.name),
+              Spacer(),
+              Text(i.score.toString())
+            ],
           )
       ]),
     );
@@ -43,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               title: Text('Ranking de hospitais'),
             ),
             body: FutureBuilder(
-                future: getHospitalNames(),
+                future: getHospitals(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Padding(
