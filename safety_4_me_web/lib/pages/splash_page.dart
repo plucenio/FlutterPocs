@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -70,6 +72,10 @@ class _SplashPageState extends State<SplashPage> {
     var backgroundImageSource =
         kIsWeb ? splashScreenFittedSource : splashScreenSource;
 
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
+
+    var imageSize = max(screenWidth, screenHeight) * 0.2;
     return Scaffold(
       body: DefaultTextStyle(
         style: textStyle,
@@ -80,34 +86,48 @@ class _SplashPageState extends State<SplashPage> {
           ),
           child: SafeArea(
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Row(
                 children: [
-                  TweenAnimationBuilder(
-                    tween: Tween<double>(begin: 0, end: 1),
-                    duration: Duration(seconds: 1),
-                    builder: (context, value, child) {
-                      return AnimatedOpacity(
-                        duration: Duration(seconds: 1),
-                        opacity: value,
-                        child: Image.asset(
-                          rafaelRoundedSource,
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          fit: BoxFit.cover,
-                        ),
-                      );
-                    },
+                  Expanded(
+                    child: Column(),
                   ),
                   Expanded(
-                    child: AnimatedSwitcher(
-                      duration: const Duration(seconds: 1),
-                      transitionBuilder: (child, animation) {
-                        return FadeTransition(child: child, opacity: animation);
-                      },
-                      child: widgetShowing,
+                    flex: 9,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TweenAnimationBuilder(
+                          tween: Tween<double>(begin: 0, end: 1),
+                          duration: Duration(seconds: 1),
+                          builder: (context, value, child) {
+                            return AnimatedOpacity(
+                              duration: Duration(seconds: 1),
+                              opacity: value,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 20.0),
+                                child: Image.asset(
+                                  rafaelRoundedSource,
+                                  width: imageSize,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        Expanded(
+                          child: AnimatedSwitcher(
+                            duration: const Duration(seconds: 1),
+                            transitionBuilder: (child, animation) {
+                              return FadeTransition(
+                                  child: child, opacity: animation);
+                            },
+                            child: widgetShowing,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                  Expanded(child: Column())
                 ],
               ),
             ),
