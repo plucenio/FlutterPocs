@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:poc_consumo_api_json/models/hospital.dart';
 import 'package:poc_consumo_api_json/services/api_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,11 +19,17 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  Future<List<Hospital>> getHospitalNames() async =>
-      await _apiService.fetchPost().then((value) => value.hospitals);
-
-  Future<String> getWidget() =>
-      getHospitalNames().then((value) => value.first.name);
+  Future<Widget> getHospitalNames() async {
+    return Container(
+      child: Column(children: [
+        for (var i
+            in await _apiService.fetchPost().then((value) => value.hospitals))
+          Row(
+            children: [Text(i.name), Spacer(), Text(i.score.toString())],
+          )
+      ]),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +40,17 @@ class _HomePageState extends State<HomePage> {
         ),
         home: Scaffold(
             appBar: AppBar(
-              title: Text('Pegando dados da Web'),
+              title: Text('Ranking de hospitais'),
             ),
             body: FutureBuilder(
-                future: getWidget(),
+                future: getHospitalNames(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return Center(
-                      child: Text(
-                        snapshot.data,
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    );
+                    return Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Center(
+                          child: snapshot.data,
+                        ));
                   } else {
                     return Center(
                       child: CircularProgressIndicator(),
