@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:poc_consumo_api_json/models/hospital_list.dart';
 
+import '../models/hospital_list.dart';
+
 class ApiService {
   Future<HospitalList> fetchPost() async {
     final response = await http
