@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poc_consumo_api_json/services/api_service.dart';
 
 import '../models/hospital_list.dart';
+import 'widgets/item_hospital_ranking_widget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -28,119 +29,18 @@ class _HomePageState extends State<HomePage> {
       child: ListView.builder(
         itemCount: _hospitalList.hospitals.length,
         itemBuilder: (context, index) {
-          var item = _hospitalList.hospitals[index];
+          var hospital = _hospitalList.hospitals[index];
           return Padding(
             padding: const EdgeInsets.all(2.0),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.1,
-              decoration: BoxDecoration(
-                // boxShadow: [
-                //   BoxShadow(
-                //     color: Colors.grey,
-                //     blurRadius: 5,
-                //   ),
-                // ],
-                color: Colors.white,
-                border: Border.all(color: Colors.blue, width: 1),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
-              ),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                ),
-                color: Colors.white,
-                highlightColor: Colors.white,
-                focusColor: Colors.white,
-                elevation: 0,
-                disabledElevation: 0,
-                focusElevation: 0,
-                highlightElevation: 0,
-                hoverElevation: 0,
-                splashColor: Colors.blue[900],
-                onPressed: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.local_hospital,
-                                color: index <= 2 ? Colors.yellow : Colors.blue,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text('${index + 1} º'),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              '${item.name}',
-                              textAlign: TextAlign.start,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text('${item.score}'),
-                    )
-                  ],
-                ),
-              ),
-
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.start,
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.only(left: 8.0),
-              //       child: Text('${index + 1} º'),
-              //     ),
-              //     Text(
-              //       '${item.name}',
-              //       textAlign: TextAlign.start,
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.only(right: 8.0),
-              //       child: Text('${item.score}'),
-              //     )
-              //   ],
-              // ),
+            child: ItemHospitalRankingWidget(
+              context: context,
+              hospital: hospital,
+              index: index,
             ),
           );
         },
       ),
     );
-    // return Container(
-    //   child: Column(children: [
-    //     for (var i
-    //         in await _apiService.fetchPost().then((value) => value.hospitals))
-    //       Row(
-    //         children: [
-    //           Text((position++).toString()),
-    //           Text("º"),
-    //           Spacer(),
-    //           Text(i.name),
-    //           Spacer(),
-    //           Text(i.score.toString())
-    //         ],
-    //       )
-    //   ]),
-    // );
   }
 
   @override
