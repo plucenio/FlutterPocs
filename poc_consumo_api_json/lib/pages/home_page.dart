@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Expanded(child: Column()),
             Expanded(
+              flex: 2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -39,14 +40,13 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.blue,
                     textColor: Colors.white,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              RankingPage(title: hospital_ranking),
-                          settings: RouteSettings(name: "/hospitalRanking"),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/hospitalRanking'
+                          // MaterialPageRoute(
+                          //   builder: (context) =>
+                          //       RankingPage(title: hospital_ranking),
+                          //   settings: RouteSettings(name: "/hospitalRanking"),
+                          // ),
+                          );
                     },
                   ),
                   RaisedButton(
@@ -62,14 +62,13 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.blue,
                     textColor: Colors.white,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              RankingPage(title: user_ranking),
-                          settings: RouteSettings(name: "/userRanking"),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/userRanking'
+                          // MaterialPageRoute(
+                          //   builder: (context) =>
+                          //       RankingPage(title: user_ranking),
+                          //   settings: RouteSettings(name: "/userRanking"),
+                          // ),
+                          );
                     },
                   ),
                 ],

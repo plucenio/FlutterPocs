@@ -51,37 +51,47 @@ class ItemRankingWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Row(
+              Expanded(
+                flex: 3,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            type == hospital_ranking
+                                ? Icons.local_hospital
+                                : Icons.person,
+                            color: isOneOfThree ? Colors.yellow : Colors.blue,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text('${index + 1} º'),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Row(
                       children: [
-                        Icon(
-                          type == hospital_ranking
-                              ? Icons.local_hospital
-                              : Icons.person,
-                          color: isOneOfThree ? Colors.yellow : Colors.blue,
+                        Wrap(
+                          children: [
+                            Text(
+                              name,
+                              //textAlign: TextAlign.start,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text('${index + 1} º'),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Row(
-                    children: [
-                      Text(name, textAlign: TextAlign.start),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+              Expanded(
+                flex: 1,
                 child: Text(
                   '$score pontos',
                   style: TextStyle(
@@ -89,7 +99,7 @@ class ItemRankingWidget extends StatelessWidget {
                         isOneOfThree ? FontWeight.bold : FontWeight.normal,
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
