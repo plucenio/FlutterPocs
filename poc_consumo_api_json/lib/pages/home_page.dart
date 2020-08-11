@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:poc_consumo_api_json/services/api_service.dart';
-
-import '../models/hospital_list.dart';
-import 'widgets/item_hospital_ranking_widget.dart';
+import 'package:poc_consumo_api_json/pages/ranking_page.dart';
+import 'package:poc_consumo_api_json/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -14,57 +12,71 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ApiService _apiService;
-  HospitalList _hospitalList;
-
-  @override
-  void initState() {
-    _apiService = ApiService();
-    super.initState();
-  }
-
-  Future<Widget> getHospitals() async {
-    _hospitalList = await _apiService.fetchPost();
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _hospitalList.hospitals.length,
-        itemBuilder: (context, index) {
-          var hospital = _hospitalList.hospitals[index];
-          return Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: ItemHospitalRankingWidget(
-              context: context,
-              hospital: hospital,
-              index: index,
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Obtendo dados da Web - Exemplo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Ranking de hospitais'),
-        ),
-        body: FutureBuilder(
-          future: getHospitals(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Padding(padding: EdgeInsets.all(10), child: snapshot.data);
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
+      body: Center(
+        child: Row(
+          children: [
+            Expanded(child: Column()),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RaisedButton(
+                    child: Row(
+                      children: [
+                        Icon(Icons.local_hospital),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Ranking de Hospitais'),
+                      ],
+                    ),
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              RankingPage(title: hospital_ranking),
+                          settings: RouteSettings(name: "/hospitalRanking"),
+                        ),
+                      );
+                    },
+                  ),
+                  RaisedButton(
+                    child: Row(
+                      children: [
+                        Icon(Icons.local_hospital),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Ranking de Usuários'),
+                      ],
+                    ),
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              RankingPage(title: user_ranking),
+                          settings: RouteSettings(name: "/userRanking"),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Expanded(child: Column()),
+          ],
         ),
       ),
     );

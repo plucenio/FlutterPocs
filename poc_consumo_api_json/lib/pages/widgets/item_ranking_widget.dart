@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:poc_consumo_api_json/models/hospital.dart';
+import 'package:poc_consumo_api_json/utils/constants.dart';
 
-class ItemHospitalRankingWidget extends StatelessWidget {
+class ItemRankingWidget extends StatelessWidget {
+  final String type;
   final BuildContext context;
-  final Hospital hospital;
+  final String name;
+  final int score;
   final int index;
 
-  const ItemHospitalRankingWidget(
-      {Key key, this.context, this.hospital, this.index})
+  const ItemRankingWidget(
+      {Key key,
+      @required this.context,
+      @required this.index,
+      @required this.name,
+      @required this.score,
+      @required this.type})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -51,7 +58,9 @@ class ItemHospitalRankingWidget extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(
-                          Icons.local_hospital,
+                          type == hospital_ranking
+                              ? Icons.local_hospital
+                              : Icons.person,
                           color: isOneOfThree ? Colors.yellow : Colors.blue,
                         ),
                         SizedBox(
@@ -66,10 +75,7 @@ class ItemHospitalRankingWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Text(
-                        '${hospital.name}',
-                        textAlign: TextAlign.start,
-                      ),
+                      Text(name, textAlign: TextAlign.start),
                     ],
                   ),
                 ],
@@ -77,7 +83,7 @@ class ItemHospitalRankingWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
-                  '${hospital.score} pontos',
+                  '$score pontos',
                   style: TextStyle(
                     fontWeight:
                         isOneOfThree ? FontWeight.bold : FontWeight.normal,
