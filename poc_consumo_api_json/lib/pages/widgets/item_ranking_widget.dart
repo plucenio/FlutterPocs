@@ -48,60 +48,112 @@ class ItemRankingWidget extends StatelessWidget {
           style: TextStyle(
               fontWeight: isOneOfThree ? FontWeight.bold : FontWeight.normal,
               color: Colors.black),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                flex: 3,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            type == hospital_ranking
-                                ? Icons.local_hospital
-                                : Icons.person,
-                            color: isOneOfThree ? Colors.yellow : Colors.blue,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text('${index + 1} º'),
-                        ],
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        type == hospital_ranking
+                            ? Icons.local_hospital
+                            : Icons.person,
+                        color: isOneOfThree ? Colors.yellow : Colors.blue,
+                        size: 24,
                       ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        '${index + 1} º',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ],
+                  ),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: Text(
+                      name,
+                      textAlign: TextAlign.start,
                     ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Row(
+                  ),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Wrap(
-                          children: [
-                            Text(
-                              name,
-                              //textAlign: TextAlign.start,
-                            ),
-                          ],
+                        Text(
+                          '$score',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
                         ),
+                        Text('pontos'),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text(
-                  '$score pontos',
-                  style: TextStyle(
-                    fontWeight:
-                        isOneOfThree ? FontWeight.bold : FontWeight.normal,
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
+          // child: Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Expanded(
+          //       flex: 3,
+          //       child: Row(
+          //         children: [
+          //           Padding(
+          //             padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          //             child: Row(
+          //               children: [
+          //                 Icon(
+          //                   type == hospital_ranking
+          //                       ? Icons.local_hospital
+          //                       : Icons.person,
+          //                   color: isOneOfThree ? Colors.yellow : Colors.blue,
+          //                 ),
+          //                 SizedBox(
+          //                   width: 5,
+          //                 ),
+          //                 Text('${index + 1} º'),
+          //               ],
+          //             ),
+          //           ),
+          //           SizedBox(
+          //             width: 15,
+          //           ),
+          //           Row(
+          //             children: [
+          //               Wrap(
+          //                 children: [
+          //                   Text(
+          //                     name,
+          //                     //textAlign: TextAlign.start,
+          //                   ),
+          //                 ],
+          //               ),
+          //             ],
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //     Expanded(
+          //       flex: 1,
+          //       child: Text(
+          //         '$score pontos',
+          //         style: TextStyle(
+          //           fontWeight:
+          //               isOneOfThree ? FontWeight.bold : FontWeight.normal,
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ),
       ),
     );
