@@ -12,13 +12,34 @@ class DefaultScaffold extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var splashBackground =
+        MediaQuery.of(context).size.width > MediaQuery.of(context).size.height
+            ? splashScreenFittedSource
+            : splashScreenSource;
     return Scaffold(
-      appBar: AppBar(
-        title: titleWidget,
-        backgroundColor: pacificBlueColor,
-        centerTitle: true,
-      ),
-      body: body,
+      appBar: titleWidget != null
+          ? AppBar(
+              title: titleWidget,
+              backgroundColor: pacificBlueColor,
+              centerTitle: true,
+            )
+          : AppBar(
+              backgroundColor: Colors.transparent,
+            ),
+      body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: new ColorFilter.mode(
+                Colors.transparent.withOpacity(0.9),
+                BlendMode.dstATop,
+              ),
+              fit: BoxFit.cover,
+              image: AssetImage(
+                splashBackground,
+              ),
+            ),
+          ),
+          child: body),
     );
   }
 }

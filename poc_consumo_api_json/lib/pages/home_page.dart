@@ -25,62 +25,54 @@ class _HomePageState extends State<HomePage> {
           Text('Home Page'),
         ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(
-              backgroundSource,
-            ),
-          ),
-        ),
-        child: Center(
-          child: Row(
-            children: [
-              Expanded(child: Column()),
-              Expanded(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RaisedButton(
-                      child: Row(
-                        children: [
-                          Icon(Icons.local_hospital),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text('Ranking de Hospitais'),
-                        ],
-                      ),
-                      color: pacificBlueColor,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/hospitalRanking');
-                      },
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //Expanded(child: Column()),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.2),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RaisedButton(
+                    child: Row(
+                      children: [
+                        Icon(Icons.local_hospital),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Ranking de Hospitais'),
+                      ],
                     ),
-                    RaisedButton(
-                      child: Row(
-                        children: [
-                          Icon(Icons.local_hospital),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text('Ranking de Usuários'),
-                        ],
-                      ),
-                      color: pacificBlueColor,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/userRanking');
-                      },
+                    color: pacificBlueColor,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/hospitalRanking');
+                    },
+                  ),
+                  RaisedButton(
+                    child: Row(
+                      children: [
+                        Icon(Icons.person),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Ranking de Usuários'),
+                      ],
                     ),
-                  ],
-                ),
+                    color: pacificBlueColor,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/userRanking');
+                    },
+                  ),
+                ],
               ),
-              Expanded(child: Column()),
-            ],
-          ),
+            ),
+            //Expanded(child: Column()),
+          ],
         ),
       ),
     );

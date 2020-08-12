@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:poc_consumo_api_json/pages/widgets/default_scaffold.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 
 import 'home_page.dart';
@@ -71,63 +72,71 @@ class _SplashPageState extends State<SplashPage> {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
+    var splashBackground = screenWidth > screenHeight
+        ? splashScreenFittedSource
+        : splashScreenSource;
+
     var imageSize = max(screenWidth, screenHeight) * 0.2;
-    return Scaffold(
-      body: DefaultTextStyle(
-        style: textStyle,
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(backgroundSource),
-              fit: BoxFit.cover,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          colorFilter: new ColorFilter.mode(
+            Colors.transparent.withOpacity(0.9),
+            BlendMode.dstATop,
           ),
-          child: SafeArea(
-            child: Center(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(),
-                  ),
-                  Expanded(
-                    flex: 9,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TweenAnimationBuilder(
-                          tween: Tween<double>(begin: 0, end: 1),
-                          duration: Duration(seconds: 1),
-                          builder: (context, value, child) {
-                            return AnimatedOpacity(
-                              duration: Duration(seconds: 1),
-                              opacity: value,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
-                                child: Image.asset(
-                                  rafaelRoundedSource,
-                                  width: imageSize,
-                                  fit: BoxFit.cover,
-                                ),
+          fit: BoxFit.cover,
+          image: AssetImage(
+            splashBackground,
+          ),
+        ),
+      ),
+      child: DefaultTextStyle(
+        style: textStyle,
+        child: SafeArea(
+          child: Center(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(),
+                ),
+                Expanded(
+                  flex: 9,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TweenAnimationBuilder(
+                        tween: Tween<double>(begin: 0, end: 1),
+                        duration: Duration(seconds: 1),
+                        builder: (context, value, child) {
+                          return AnimatedOpacity(
+                            duration: Duration(seconds: 1),
+                            opacity: value,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Image.asset(
+                                rafaelRoundedSource,
+                                width: imageSize,
+                                fit: BoxFit.cover,
                               ),
-                            );
+                            ),
+                          );
+                        },
+                      ),
+                      Expanded(
+                        child: AnimatedSwitcher(
+                          duration: const Duration(seconds: 1),
+                          transitionBuilder: (child, animation) {
+                            return FadeTransition(
+                                child: child, opacity: animation);
                           },
+                          child: widgetShowing,
                         ),
-                        Expanded(
-                          child: AnimatedSwitcher(
-                            duration: const Duration(seconds: 1),
-                            transitionBuilder: (child, animation) {
-                              return FadeTransition(
-                                  child: child, opacity: animation);
-                            },
-                            child: widgetShowing,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Expanded(child: Column())
-                ],
-              ),
+                ),
+                Expanded(child: Column())
+              ],
             ),
           ),
         ),

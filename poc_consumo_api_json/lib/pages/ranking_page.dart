@@ -69,35 +69,20 @@ class _RankingPageState extends State<RankingPage> {
   Widget build(BuildContext context) {
     return DefaultScaffold(
       titleWidget: Text(widget.title),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            colorFilter: new ColorFilter.mode(
-              Colors.transparent.withOpacity(0.9),
-              BlendMode.dstATop,
-            ),
-            fit: BoxFit.cover,
-            image: AssetImage(
-              backgroundSource,
-            ),
-          ),
-        ),
-        child: FutureBuilder(
-          future:
-              widget.title == hospital_ranking ? getHospitals() : getUsers(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Padding(padding: EdgeInsets.all(10), child: snapshot.data);
-            } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.transparent,
-                  valueColor: AlwaysStoppedAnimation<Color>(pacificBlueColor),
-                ),
-              );
-            }
-          },
-        ),
+      body: FutureBuilder(
+        future: widget.title == hospital_ranking ? getHospitals() : getUsers(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Padding(padding: EdgeInsets.all(10), child: snapshot.data);
+          } else {
+            return Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.transparent,
+                valueColor: AlwaysStoppedAnimation<Color>(pacificBlueColor),
+              ),
+            );
+          }
+        },
       ),
     );
   }
