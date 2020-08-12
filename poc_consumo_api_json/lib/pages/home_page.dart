@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:poc_consumo_api_json/pages/ranking_page.dart';
-import 'package:poc_consumo_api_json/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
