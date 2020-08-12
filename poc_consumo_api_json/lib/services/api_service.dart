@@ -7,7 +7,7 @@ import 'package:poc_consumo_api_json/models/user_list.dart';
 import '../models/hospital_list.dart';
 
 class ApiService {
-  Future<HospitalList> fetchPost() async {
+  Future<HospitalList> fetchHospitalRanking() async {
     final response = await http
         .get("https://safety4me.azurewebsites.net/api/RankingHospital");
 

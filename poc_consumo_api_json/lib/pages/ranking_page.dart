@@ -24,46 +24,42 @@ class _RankingPageState extends State<RankingPage> {
   }
 
   Future<Widget> getHospitals() async {
-    HospitalList _hospitalList = await _apiService.fetchPost();
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _hospitalList.hospitals.length,
-        itemBuilder: (context, index) {
-          var hospital = _hospitalList.hospitals[index];
-          return Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: ItemRankingWidget(
-              type: widget.title,
-              context: context,
-              name: hospital.name,
-              score: hospital.score,
-              index: index,
-            ),
-          );
-        },
-      ),
+    HospitalList _hospitalList = await _apiService.fetchHospitalRanking();
+    return ListView.builder(
+      itemCount: _hospitalList.hospitals.length,
+      itemBuilder: (context, index) {
+        var hospital = _hospitalList.hospitals[index];
+        return Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: ItemRankingWidget(
+            type: widget.title,
+            context: context,
+            name: hospital.name,
+            score: hospital.score,
+            index: index,
+          ),
+        );
+      },
     );
   }
 
   Future<Widget> getUsers() async {
     UserList _userList = await _apiService.fetchUserRanking();
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _userList.users.length,
-        itemBuilder: (context, index) {
-          var user = _userList.users[index];
-          return Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: ItemRankingWidget(
-              context: context,
-              name: user.name,
-              score: user.score,
-              index: index,
-              type: widget.title,
-            ),
-          );
-        },
-      ),
+    return ListView.builder(
+      itemCount: _userList.users.length,
+      itemBuilder: (context, index) {
+        var user = _userList.users[index];
+        return Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: ItemRankingWidget(
+            context: context,
+            name: user.name,
+            score: user.score,
+            index: index,
+            type: widget.title,
+          ),
+        );
+      },
     );
   }
 
