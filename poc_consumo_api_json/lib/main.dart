@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poc_consumo_api_json/pages/home_page.dart';
 import 'package:poc_consumo_api_json/pages/ranking_page.dart';
+import 'package:poc_consumo_api_json/pages/splash_page.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 
 void main() {
@@ -15,10 +16,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Roboto',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (context) => HomePage(),
+        '/': (context) => SplashPage(),
+        '/home': (context) => HomePage(),
         '/userRanking': (context) => RankingPage(
               title: user_ranking,
             ),
@@ -26,7 +29,6 @@ class MyApp extends StatelessWidget {
               title: hospital_ranking,
             ),
       },
-      // home: HomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:poc_consumo_api_json/models/hospital_list.dart';
 import 'package:poc_consumo_api_json/models/user_list.dart';
 import 'package:poc_consumo_api_json/services/api_service.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 
+import 'widgets/default_scaffold.dart';
 import 'widgets/item_ranking_widget.dart';
 
 class RankingPage extends StatefulWidget {
@@ -30,7 +32,7 @@ class _RankingPageState extends State<RankingPage> {
       itemBuilder: (context, index) {
         var hospital = _hospitalList.hospitals[index];
         return Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.all(5.0),
           child: ItemRankingWidget(
             type: widget.title,
             context: context,
@@ -50,7 +52,7 @@ class _RankingPageState extends State<RankingPage> {
       itemBuilder: (context, index) {
         var user = _userList.users[index];
         return Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.all(5.0),
           child: ItemRankingWidget(
             context: context,
             name: user.name,
@@ -65,16 +67,22 @@ class _RankingPageState extends State<RankingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Obtendo dados da Web - Exemplo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
+    return DefaultScaffold(
+      titleWidget: Text(widget.title),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            colorFilter: new ColorFilter.mode(
+              Colors.transparent.withOpacity(0.9),
+              BlendMode.dstATop,
+            ),
+            fit: BoxFit.cover,
+            image: AssetImage(
+              backgroundSource,
+            ),
+          ),
         ),
-        body: FutureBuilder(
+        child: FutureBuilder(
           future:
               widget.title == hospital_ranking ? getHospitals() : getUsers(),
           builder: (context, snapshot) {
@@ -82,7 +90,10 @@ class _RankingPageState extends State<RankingPage> {
               return Padding(padding: EdgeInsets.all(10), child: snapshot.data);
             } else {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.transparent,
+                  valueColor: AlwaysStoppedAnimation<Color>(pacificBlueColor),
+                ),
               );
             }
           },

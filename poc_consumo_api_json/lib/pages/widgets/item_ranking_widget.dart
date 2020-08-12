@@ -22,8 +22,8 @@ class ItemRankingWidget extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.blue, width: 1),
+        color: Colors.transparent,
+        border: Border.all(color: pacificBlueColor, width: 1),
         borderRadius: BorderRadius.all(
           Radius.circular(10),
         ),
@@ -34,16 +34,16 @@ class ItemRankingWidget extends StatelessWidget {
             Radius.circular(10),
           ),
         ),
-        color: Colors.white,
-        hoverColor: Colors.white,
-        highlightColor: Colors.white,
-        focusColor: Colors.white,
+        color: Colors.transparent,
+        hoverColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        focusColor: Colors.transparent,
         elevation: 0,
         disabledElevation: 0,
         focusElevation: 0,
         highlightElevation: 0,
         hoverElevation: 10,
-        splashColor: Colors.white,
+        splashColor: Colors.transparent,
         onPressed: () {},
         child: DefaultTextStyle(
           style: TextStyle(
@@ -52,7 +52,7 @@ class ItemRankingWidget extends StatelessWidget {
             fontSize: 18,
           ),
           child: Container(
-            color: Colors.white,
+            color: Colors.white60,
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Row(
@@ -94,7 +94,7 @@ class ItemRankingWidget extends StatelessWidget {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           '$score',
