@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poc_consumo_api_json/pages/caroussel_page.dart';
 import 'package:poc_consumo_api_json/pages/home_page.dart';
 import 'package:poc_consumo_api_json/pages/ranking_page.dart';
 import 'package:poc_consumo_api_json/pages/splash_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/hospitalRanking': (context) => RankingPage(
               title: hospital_ranking,
             ),
+        '/carrossel': (context) => CarousselPage(),
       },
     );
   }

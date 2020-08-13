@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:poc_consumo_api_json/pages/widgets/default_scaffold.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 
 import 'home_page.dart';

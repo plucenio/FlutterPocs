@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
-
 import 'widgets/default_scaffold.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,6 +34,7 @@ class _HomePageState extends State<HomePage> {
                   horizontal: MediaQuery.of(context).size.width * 0.2),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   RaisedButton(
                     child: Row(
@@ -66,6 +66,22 @@ class _HomePageState extends State<HomePage> {
                     textColor: Colors.white,
                     onPressed: () {
                       Navigator.pushNamed(context, '/userRanking');
+                    },
+                  ),
+                  RaisedButton(
+                    child: Row(
+                      children: [
+                        Icon(Icons.swap_horiz),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Carrossel'),
+                      ],
+                    ),
+                    color: pacificBlueColor,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/carrossel');
                     },
                   ),
                 ],
