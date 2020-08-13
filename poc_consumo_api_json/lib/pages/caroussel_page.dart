@@ -119,7 +119,11 @@ List<Widget> getImageSliders(BuildContext context) {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(item.title),
+                          Text(
+                            item.title,
+                            style: TextStyle(
+                                color: pacificBlueColor, fontSize: 18),
+                          ),
                           SizedBox(
                             height: 15,
                           ),
@@ -134,6 +138,7 @@ List<Widget> getImageSliders(BuildContext context) {
                             child: Text(
                               item.description,
                               textAlign: TextAlign.center,
+                              style: TextStyle(color: pacificBlueColor),
                             ),
                           ),
                         ],
