@@ -49,78 +49,130 @@ class _CarousselPageState extends State<CarousselPage> {
         ],
       ),
       body: Container(
-          child: Column(
-        children: <Widget>[
-          CarouselSlider(
-            items: getImageSliders(context),
-            options: CarouselOptions(
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 6),
-                pauseAutoPlayInFiniteScroll: true,
-                enlargeCenterPage: true,
-                aspectRatio: 2.0,
-                enableInfiniteScroll: false,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
-                }),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: imgList.map((url) {
-              int index = imgList.indexOf(url);
-              return Container(
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: _current == index
-                      ? Color.fromRGBO(0, 0, 0, 0.9)
-                      : Color.fromRGBO(0, 0, 0, 0.4),
-                ),
-              );
-            }).toList(),
-          ),
-        ],
-      )),
+        child: Column(
+          children: <Widget>[
+            CarouselSlider(
+              items: getImageSliders(context),
+              options: CarouselOptions(
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 6),
+                  pauseAutoPlayInFiniteScroll: true,
+                  enlargeCenterPage: true,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  enableInfiniteScroll: false,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _current = index;
+                    });
+                  }),
+            ),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: imgList.map((url) {
+                  int index = imgList.indexOf(url);
+                  return Container(
+                    width: 8.0,
+                    height: 8.0,
+                    margin:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _current == index
+                          ? Color.fromRGBO(0, 0, 0, 0.9)
+                          : Color.fromRGBO(0, 0, 0, 0.4),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
 List<Widget> getImageSliders(BuildContext context) {
+  var size = MediaQuery.of(context).size;
   return imgList
-      .map(
-        (item) => Container(
+      .map((item) => Padding(
+                padding: EdgeInsets.all(10),
+                child: Card(
+                  elevation: 10,
+                  shadowColor: pacificBlueColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(25),
+                    ),
+                  ),
+                  child: Container(
+                    width: size.width * 0.9,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25),
+                      ),
+                      border: Border.all(color: Colors.transparent),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(item.title),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Image.asset(
+                            item.image,
+                            height: size.height * 0.33,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Flexible(
+                            child: Text(
+                              item.description,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              )
+
+          /*Container(
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
             child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: pacificBlueColor),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    color: Colors.transparent,
+              padding: EdgeInsets.all(20),
+              child: Container(
+                height: size.height * 0.8,
+                decoration: BoxDecoration(
+                  border: Border.all(color: pacificBlueColor),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
                   ),
-                  child: Column(
-                    children: [
-                      Container(
-                        child: Image.asset(
-                          item.image,
-                          width: MediaQuery.of(context).size.width / 3,
-                          fit: BoxFit.cover,
-                        ),
+                  color: Colors.transparent,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Image.asset(
+                        item.image,
+                        width: MediaQuery.of(context).size.width / 3,
+                        fit: BoxFit.cover,
                       ),
-                      Expanded(child: Text(item.title)),
-                      Expanded(child: Text(item.description))
-                    ],
-                  ),
-                )
+                    ),
+                    Expanded(child: Text(item.title)),
+                    Expanded(child: Text(item.description))
+                  ],
+                ),
+              ),
 
-                /*Stack(
+              /*Stack(
             children: <Widget>[
               Image.network(item, fit: BoxFit.cover, width: 1000.0),
               Positioned(
@@ -152,9 +204,9 @@ List<Widget> getImageSliders(BuildContext context) {
               ),
             ],
           ),*/
-                ),
+            ),
           ),
-        ),
-      )
+        ),*/
+          )
       .toList();
 }
