@@ -4,12 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:poc_consumo_api_json/pages/widgets/default_scaffold.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 
-final List<String> imgList = [
-  iconLevel1,
-  iconLevel2,
-  iconLevel3,
-  iconLevel4,
-  iconLevel5
+class CarousselModel {
+  final String image;
+  final String title;
+  final String description;
+
+  CarousselModel(this.image, this.title, this.description);
+}
+
+final List<CarousselModel> imgList = [
+  CarousselModel(iconLevel1, "Oi equipe Safety4Me",
+      "Isto é um teste do que conseguimos fazer com a nova tecnologia (Flutter)."),
+  CarousselModel(iconLevel2, "Início",
+      "Isso é o começo de um novo desafio (gostamos disso)."),
+  CarousselModel(iconLevel3, "Confiança",
+      "Estamos muito confiantes com as possibilidades da ferramenta."),
+  CarousselModel(iconLevel4, "Vamos com calma",
+      "Com tantas possibilidades temos que ter os pés no chão."),
+  CarousselModel(iconLevel5, "O futuro é Flutter",
+      "Temos certeza que escolhemos a tecnologia certa!"),
 ];
 
 class CarousselPage extends StatefulWidget {
@@ -39,9 +52,10 @@ class _CarousselPageState extends State<CarousselPage> {
           child: Column(
         children: <Widget>[
           CarouselSlider(
-            items: imageSliders,
+            items: getImageSliders(context),
             options: CarouselOptions(
                 autoPlay: true,
+                autoPlayInterval: Duration(seconds: 6),
                 pauseAutoPlayInFiniteScroll: true,
                 enlargeCenterPage: true,
                 aspectRatio: 2.0,
@@ -75,34 +89,38 @@ class _CarousselPageState extends State<CarousselPage> {
   }
 }
 
-final List<Widget> imageSliders = imgList
-    .map(
-      (item) => Container(
-        child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: pacificBlueColor),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                  color: Colors.transparent,
-                ),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      item,
-                      fit: BoxFit.scaleDown,
+List<Widget> getImageSliders(BuildContext context) {
+  return imgList
+      .map(
+        (item) => Container(
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: pacificBlueColor),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
                     ),
-                    Expanded(child: Text("Imagem")),
-                    Expanded(child: Text("Descrição da imagem"))
-                  ],
-                ),
-              )
+                    color: Colors.transparent,
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Image.asset(
+                          item.image,
+                          width: MediaQuery.of(context).size.width / 3,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Expanded(child: Text(item.title)),
+                      Expanded(child: Text(item.description))
+                    ],
+                  ),
+                )
 
-              /*Stack(
+                /*Stack(
             children: <Widget>[
               Image.network(item, fit: BoxFit.cover, width: 1000.0),
               Positioned(
@@ -134,8 +152,9 @@ final List<Widget> imageSliders = imgList
               ),
             ],
           ),*/
-              ),
+                ),
+          ),
         ),
-      ),
-    )
-    .toList();
+      )
+      .toList();
+}
