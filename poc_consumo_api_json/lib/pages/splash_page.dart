@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:poc_consumo_api_json/i18n/i18n_keys.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 
 import 'home_page.dart';
+import 'package:poc_consumo_api_json/i18n/splash_page.i18n.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -25,10 +27,11 @@ class _SplashPageState extends State<SplashPage> {
       color: pacificBlueColor,
       fontWeight: FontWeight.normal);
 
-  Text textGreetings = Text('Olá', key: ValueKey(1));
+  Text textGreetings = Text(splashPageTextGreetings.i18n, key: ValueKey(1));
 
-  Text textPresentation = Text('Eu sou o Dr. Rafael', key: ValueKey(2));
-  Text textWelcome = Text('Seja bem-vindo ao', key: ValueKey(3));
+  Text textPresentation =
+      Text(splashPageTextPresentation.i18n, key: ValueKey(2));
+  Text textWelcome = Text(splashPageTextWelcome.i18n, key: ValueKey(3));
 
   Future<void> showAnimations() async {
     await Future.delayed(Duration(seconds: 2), () {

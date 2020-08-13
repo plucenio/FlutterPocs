@@ -20,7 +20,7 @@ class DefaultScaffold extends StatelessWidget {
       appBar: titleWidget != null
           ? AppBar(
               title: titleWidget,
-              backgroundColor: pacificBlueColor,
+              backgroundColor: blackSafety4MeColor,
               centerTitle: true,
             )
           : AppBar(

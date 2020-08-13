@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:i18n_extension/i18n_widget.dart';
 import 'package:poc_consumo_api_json/pages/caroussel_page.dart';
 import 'package:poc_consumo_api_json/pages/home_page.dart';
 import 'package:poc_consumo_api_json/pages/ranking_page.dart';
@@ -20,8 +22,16 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Roboto',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', "US"),
+        const Locale('pt', "BR"),
+      ],
       routes: {
-        '/': (context) => SplashPage(),
         '/home': (context) => HomePage(),
         '/userRanking': (context) => RankingPage(
               title: user_ranking,
@@ -31,6 +41,9 @@ class MyApp extends StatelessWidget {
             ),
         '/carrossel': (context) => CarousselPage(),
       },
+      home: I18n(
+        child: SplashPage(),
+      ),
     );
   }
 }

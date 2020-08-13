@@ -1,7 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:i18n_extension/i18n_widget.dart';
+import 'package:poc_consumo_api_json/i18n/i18n_keys.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 import 'widgets/default_scaffold.dart';
+
+import 'package:poc_consumo_api_json/i18n/home_page.i18n.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -14,21 +18,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-      titleWidget: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.home),
-          SizedBox(
-            width: 5,
-          ),
-          Text('Home Page'),
-        ],
+      titleWidget: Image.asset(
+        logoSafety4MeWhitePacificBlue,
+        filterQuality: FilterQuality.high,
+        height: MediaQuery.of(context).size.height * 0.05,
+        fit: BoxFit.fitHeight,
       ),
       body: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            //Expanded(child: Column()),
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.2),
@@ -43,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text('Ranking de Hospitais'),
+                        Text(homePageHospitalRanking.i18n),
                       ],
                     ),
                     color: pacificBlueColor,
@@ -59,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text('Ranking de Usuários'),
+                        Text(homePageUserRankingText.i18n),
                       ],
                     ),
                     color: pacificBlueColor,
@@ -75,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text('Carrossel'),
+                        Text(homePageCarousel.i18n),
                       ],
                     ),
                     color: pacificBlueColor,
@@ -87,7 +86,6 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            //Expanded(child: Column()),
           ],
         ),
       ),
