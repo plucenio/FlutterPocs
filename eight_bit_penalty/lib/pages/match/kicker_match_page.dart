@@ -1,8 +1,5 @@
-import 'package:eight_bit_penalty/pages/match/goal_result_page.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/my_scaffold.dart';
-import 'keeper_match_page.dart';
 import 'widgets/goal_widget.dart';
 import 'widgets/score_widget.dart';
 
@@ -32,13 +29,6 @@ class _KickerMatchPageState extends State<KickerMatchPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GoalWidget(
-                    action: () => Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => GoalResultPage(
-                            isKick: true,
-                          ),
-                        )),
                     isKick: true,
                   ),
                   Expanded(child: Text('Campo')),

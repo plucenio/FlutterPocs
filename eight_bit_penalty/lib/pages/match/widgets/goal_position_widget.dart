@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+import '../goal_result_page.dart';
+
 class GoalPositionWidget extends StatelessWidget {
   final int position;
-  final Function action;
+  final bool isKick;
 
   const GoalPositionWidget(
-      {Key key, @required this.position, @required this.action})
+      {Key key, @required this.isKick, @required this.position})
       : super(key: key);
 
   @override
@@ -17,11 +19,20 @@ class GoalPositionWidget extends StatelessWidget {
         child: Container(
           height: double.infinity,
           child: RaisedButton(
-            color: Colors.white,
-            child: Text('$position'),
-            elevation: 0,
-            onPressed: action.call,
-          ),
+              color: Colors.white,
+              child: Text('$position'),
+              elevation: 0,
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GoalResultPage(
+                      isKick: isKick,
+                      position: position,
+                    ),
+                  ),
+                );
+              }),
           decoration: BoxDecoration(border: Border.all(width: 1)),
         ),
       ),

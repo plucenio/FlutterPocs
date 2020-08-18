@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../widgets/my_scaffold.dart';
-import 'kicker_match_page.dart';
 import 'widgets/goal_widget.dart';
 import 'widgets/score_widget.dart';
 
@@ -33,12 +31,6 @@ class _KeeperMatchPageState extends State<KeeperMatchPage> {
                   Expanded(child: Text('Campo')),
                   // Goleira
                   GoalWidget(
-                    action: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => KickerMatchPage(),
-                      ),
-                    ),
                     isKick: false,
                   ),
                 ],

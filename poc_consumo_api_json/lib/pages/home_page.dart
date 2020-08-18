@@ -1,10 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:i18n_extension/i18n_widget.dart';
 import 'package:poc_consumo_api_json/i18n/i18n_keys.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 import 'widgets/default_scaffold.dart';
-
 import 'package:poc_consumo_api_json/i18n/home_page.i18n.dart';
 
 class HomePage extends StatefulWidget {
@@ -83,6 +81,22 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pushNamed(context, '/carrossel');
                     },
                   ),
+                  RaisedButton(
+                    color: Colors.amber[300],
+                    child: Row(children: [
+                      Icon(Icons.accessible),
+                      Text("teste"),
+                    ]),
+                    onPressed: () => {
+                      showDialog(
+                        context: context,
+                        child: AlertDialog(
+                          title: Text("Alert"),
+                          actions: [CloseButton()],
+                        ),
+                      ),
+                    },
+                  )
                 ],
               ),
             ),

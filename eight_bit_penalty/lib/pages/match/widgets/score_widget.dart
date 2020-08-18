@@ -1,7 +1,6 @@
-import 'package:eight_bit_penalty/pages/match/widgets/player_2_score_widget.dart';
 import 'package:flutter/material.dart';
-
 import 'player_1_score_widget.dart';
+import 'player_2_score_widget.dart';
 
 class ScoreWidget extends StatelessWidget {
   @override
@@ -15,8 +14,12 @@ class ScoreWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Player1ScoreWidget(),
-            Player2ScoreWidget(),
+            Player1ScoreWidget(
+              currentRound: 0,
+            ),
+            Player2ScoreWidget(
+              currentRound: 3,
+            ),
           ],
         ),
       ),

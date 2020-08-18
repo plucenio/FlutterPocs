@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'goal_position_widget.dart';
 
 class GoalWidget extends StatelessWidget {
   final bool isKick;
-  final Function action;
 
-  const GoalWidget({Key key, @required this.isKick, @required this.action})
-      : super(key: key);
+  const GoalWidget({Key key, @required this.isKick}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -24,13 +21,13 @@ class GoalWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       GoalPositionWidget(
-                          position: isKick ? 1 : 4, action: action),
+                          isKick: isKick, position: isKick ? 1 : 4),
                       GoalPositionWidget(
-                          position: isKick ? 2 : 3, action: action),
+                          isKick: isKick, position: isKick ? 2 : 3),
                       GoalPositionWidget(
-                          position: isKick ? 3 : 2, action: action),
+                          isKick: isKick, position: isKick ? 3 : 2),
                       GoalPositionWidget(
-                          position: isKick ? 4 : 1, action: action),
+                          isKick: isKick, position: isKick ? 4 : 1),
                     ],
                   ),
                 ),
@@ -38,13 +35,13 @@ class GoalWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       GoalPositionWidget(
-                          position: isKick ? 5 : 8, action: action),
+                          isKick: isKick, position: isKick ? 5 : 8),
                       GoalPositionWidget(
-                          position: isKick ? 6 : 7, action: action),
+                          isKick: isKick, position: isKick ? 6 : 7),
                       GoalPositionWidget(
-                          position: isKick ? 7 : 6, action: action),
+                          isKick: isKick, position: isKick ? 7 : 6),
                       GoalPositionWidget(
-                          position: isKick ? 8 : 5, action: action),
+                          isKick: isKick, position: isKick ? 8 : 5),
                     ],
                   ),
                 ),

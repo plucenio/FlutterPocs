@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'keeper_match_page.dart';
 import 'kicker_match_page.dart';
 
@@ -36,7 +35,7 @@ class _GoalResultPageState extends State<GoalResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text(''),
+      body: Text("Posição selecionada:${widget.position}"),
     );
   }
 }
