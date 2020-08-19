@@ -31,15 +31,19 @@ class _KickerMatchPageState extends State<KickerMatchPage> {
             child: Container(
               width: double.infinity,
               color: Colors.green,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GoalWidget(
-                    matchScoreModel: widget.matchScoreModel,
-                  ),
-                  Expanded(child: Text('Campo')),
-                  // Goleira
-                ],
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(left: 150, right: 150, bottom: 50),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GoalWidget(
+                      matchScoreModel: widget.matchScoreModel,
+                    ),
+                    Expanded(child: Text('Campo')),
+                    // Goleira
+                  ],
+                ),
               ),
             ),
           ),

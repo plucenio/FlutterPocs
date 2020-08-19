@@ -36,7 +36,8 @@ class _Player1ScoreWidgetState extends State<Player1ScoreWidget> {
     for (var index = 0; index < 5; index++) {
       if (widget.playerScoreModel.kicks.isNotEmpty &&
           widget.playerScoreModel.kicks.length - 1 >= index) {
-        scoreBallList.add(getColorBall(goal: true));
+        scoreBallList
+            .add(getColorBall(goal: widget.playerScoreModel.kicks[index]));
       } else {
         scoreBallList.add(getColorBall());
       }

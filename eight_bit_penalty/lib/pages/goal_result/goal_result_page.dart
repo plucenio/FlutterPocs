@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../models/match_score_model.dart';
 import '../match/keeper_match_page.dart';
@@ -37,15 +38,39 @@ class _GoalResultPageState extends State<GoalResultPage> {
     });
   }
 
+  Widget getImage({bool goal}) {
+    var _screenHeight = MediaQuery.of(context).size.height;
+    var _screenWidth = MediaQuery.of(context).size.width;
+    var _ballSize = max(_screenHeight, _screenWidth) * 0.4;
+
+    return Image.asset(
+      "assets/images/${goal ? "goal" : "keeper"}.png",
+      height: _ballSize,
+      width: _ballSize,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    var opponentOption = Random().nextInt(7) + 1;
+    var goal = (widget.position != opponentOption);
     if (widget.matchScoreModel.isKick) {
-      widget.matchScoreModel.player1ScoreModel.goal();
+      goal
+          ? widget.matchScoreModel.player1ScoreModel.goal()
+          : widget.matchScoreModel.player1ScoreModel.fail();
     } else {
-      widget.matchScoreModel.player2ScoreModel.goal();
+      goal
+          ? widget.matchScoreModel.player2ScoreModel.goal()
+          : widget.matchScoreModel.player2ScoreModel.fail();
     }
     return Scaffold(
-      body: Text("Posição selecionada:${widget.position}"),
+      body: Column(
+        children: [
+          Text("""
+Posição selecionada:${widget.position} Posição do oponente: $opponentOption"""),
+          getImage(goal: goal)
+        ],
+      ),
     );
   }
 }
