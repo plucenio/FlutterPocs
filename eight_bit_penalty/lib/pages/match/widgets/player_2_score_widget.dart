@@ -33,14 +33,25 @@ class _Player2ScoreWidgetState extends State<Player2ScoreWidget> {
 
   List<Widget> getKicks() {
     List<Widget> scoreBallList = <Widget>[];
-    for (var index = 0; index < 5; index++) {
-      if (widget.playerScoreModel.kicks.isNotEmpty &&
-          widget.playerScoreModel.kicks.length - 1 >= index) {
+    var remainingKicks = 5 -
+        (widget.playerScoreModel.kicks.isNotEmpty
+            ? widget.playerScoreModel.kicks.length
+            : 0);
+    if (widget.playerScoreModel.kicks.isNotEmpty) {
+      for (var index = 0;
+          index < widget.playerScoreModel.kicks.length;
+          index++) {
         scoreBallList
             .add(getColorBall(goal: widget.playerScoreModel.kicks[index]));
-      } else {
-        scoreBallList.add(getColorBall());
+        scoreBallList.add(
+          SizedBox(
+            width: 10,
+          ),
+        );
       }
+    }
+    for (var index = 0; index < remainingKicks; index++) {
+      scoreBallList.add(getColorBall());
       scoreBallList.add(
         SizedBox(
           width: 10,
