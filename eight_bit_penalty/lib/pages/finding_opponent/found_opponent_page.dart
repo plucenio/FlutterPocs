@@ -1,7 +1,8 @@
+import 'package:eight_bit_penalty/models/match_score_model.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/my_scaffold.dart';
-import 'keeper_match_page.dart';
-import 'kicker_match_page.dart';
+import '../match/keeper_match_page.dart';
+import '../match/kicker_match_page.dart';
 
 class FoundOpponentPage extends StatefulWidget {
   FoundOpponentPage({Key key}) : super(key: key);
@@ -25,8 +26,9 @@ class _FoundOpponentPageState extends State<FoundOpponentPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => KickerMatchPage(),
-                    ));
+                        builder: (context) => KickerMatchPage(
+                              matchScoreModel: MatchScoreModel(),
+                            )));
               },
             ),
             RaisedButton(
@@ -35,7 +37,9 @@ class _FoundOpponentPageState extends State<FoundOpponentPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => KeeperMatchPage(),
+                      builder: (context) => KeeperMatchPage(
+                        matchScoreModel: MatchScoreModel(),
+                      ),
                     ));
               },
             )

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'keeper_match_page.dart';
-import 'kicker_match_page.dart';
+import '../../models/match_score_model.dart';
+import '../match/keeper_match_page.dart';
+import '../match/kicker_match_page.dart';
 
 class GoalResultPage extends StatefulWidget {
-  final bool isKick;
+  final MatchScoreModel matchScoreModel;
   final int position;
 
   const GoalResultPage(
-      {Key key, @required this.isKick, @required this.position})
+      {Key key, @required this.matchScoreModel, @required this.position})
       : super(key: key);
 
   @override
@@ -26,7 +27,11 @@ class _GoalResultPageState extends State<GoalResultPage> {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
-          return widget.isKick ? KeeperMatchPage() : KickerMatchPage();
+          return widget.matchScoreModel.isKick
+              ? KeeperMatchPage(
+                  matchScoreModel: widget.matchScoreModel,
+                )
+              : KickerMatchPage(matchScoreModel: widget.matchScoreModel);
         }),
       );
     });
@@ -34,6 +39,11 @@ class _GoalResultPageState extends State<GoalResultPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.matchScoreModel.isKick) {
+      widget.matchScoreModel.player1ScoreModel.goal();
+    } else {
+      widget.matchScoreModel.player2ScoreModel.goal();
+    }
     return Scaffold(
       body: Text("Posição selecionada:${widget.position}"),
     );

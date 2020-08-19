@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import '../../models/match_score_model.dart';
 import '../../widgets/my_scaffold.dart';
 import 'widgets/goal_widget.dart';
 import 'widgets/score_widget.dart';
 
 class KickerMatchPage extends StatefulWidget {
-  KickerMatchPage({Key key}) : super(key: key);
+  final MatchScoreModel matchScoreModel;
+  KickerMatchPage({Key key, @required this.matchScoreModel}) : super(key: key) {
+    matchScoreModel.isKick = true;
+  }
 
   @override
   _KickerMatchPageState createState() => _KickerMatchPageState();
@@ -19,7 +23,9 @@ class _KickerMatchPageState extends State<KickerMatchPage> {
       ),
       body: Column(
         children: [
-          ScoreWidget(),
+          ScoreWidget(
+            matchScoreModel: widget.matchScoreModel,
+          ),
           Expanded(
             flex: 9,
             child: Container(
@@ -29,7 +35,7 @@ class _KickerMatchPageState extends State<KickerMatchPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GoalWidget(
-                    isKick: true,
+                    matchScoreModel: widget.matchScoreModel,
                   ),
                   Expanded(child: Text('Campo')),
                   // Goleira

@@ -1,10 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../../../models/player_score_model.dart';
 
 class Player2ScoreWidget extends StatefulWidget {
-  final int currentRound;
+  final PlayerScoreModel playerScoreModel;
 
-  const Player2ScoreWidget({Key key, @required this.currentRound})
+  const Player2ScoreWidget({Key key, @required this.playerScoreModel})
       : super(key: key);
 
   @override
@@ -17,68 +18,45 @@ class _Player2ScoreWidgetState extends State<Player2ScoreWidget> {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget getColorBall({bool goal}) {
     var _screenHeight = MediaQuery.of(context).size.height;
     var _screenWidth = MediaQuery.of(context).size.width;
     var _ballSize = max(_screenHeight, _screenWidth) * 0.02;
 
-    var _defaultBall = Image.asset(
+    return Image.asset(
       'assets/images/ball.png',
-      color: Colors.blue,
+      color: goal == null ? Colors.grey : goal ? Colors.blue : Colors.red,
       height: _ballSize,
       width: _ballSize,
     );
+  }
 
-    var scoreBallList = [];
+  List<Widget> getKicks() {
+    List<Widget> scoreBallList = <Widget>[];
     for (var index = 0; index < 5; index++) {
-      scoreBallList.add(_defaultBall);
+      if (widget.playerScoreModel.kicks.isNotEmpty &&
+          widget.playerScoreModel.kicks.length - 1 >= index) {
+        scoreBallList.add(getColorBall(goal: true));
+      } else {
+        scoreBallList.add(getColorBall());
+      }
+      scoreBallList.add(
+        SizedBox(
+          width: 10,
+        ),
+      );
     }
+    return scoreBallList;
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(
-            'assets/images/ball.png',
-            height: _ballSize,
-            width: _ballSize,
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Image.asset(
-            'assets/images/ball.png',
-            height: _ballSize,
-            width: _ballSize,
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Image.asset(
-            'assets/images/ball.png',
-            height: _ballSize,
-            width: _ballSize,
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Image.asset(
-            'assets/images/ball.png',
-            height: _ballSize,
-            width: _ballSize,
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Image.asset(
-            'assets/images/ball.png',
-            height: _ballSize,
-            width: _ballSize,
-          ),
-        ],
+        children: getKicks(),
       ),
     );
   }

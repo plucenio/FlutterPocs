@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/my_scaffold.dart';
-import '../match/finding_match_page.dart';
+import '../finding_opponent/finding_match_page.dart';
 
 class HomePage extends StatefulWidget {
   @override

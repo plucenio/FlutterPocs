@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import '../../../models/match_score_model.dart';
 import 'goal_position_widget.dart';
 
-class GoalWidget extends StatelessWidget {
-  final bool isKick;
+class GoalWidget extends StatefulWidget {
+  final MatchScoreModel matchScoreModel;
 
-  const GoalWidget({Key key, @required this.isKick}) : super(key: key);
+  const GoalWidget({
+    Key key,
+    @required this.matchScoreModel,
+  }) : super(key: key);
+
+  @override
+  _GoalWidgetState createState() => _GoalWidgetState();
+}
+
+class _GoalWidgetState extends State<GoalWidget> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -21,13 +31,17 @@ class GoalWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       GoalPositionWidget(
-                          isKick: isKick, position: isKick ? 1 : 4),
+                          matchScoreModel: widget.matchScoreModel,
+                          position: widget.matchScoreModel.isKick ? 1 : 4),
                       GoalPositionWidget(
-                          isKick: isKick, position: isKick ? 2 : 3),
+                          matchScoreModel: widget.matchScoreModel,
+                          position: widget.matchScoreModel.isKick ? 2 : 3),
                       GoalPositionWidget(
-                          isKick: isKick, position: isKick ? 3 : 2),
+                          matchScoreModel: widget.matchScoreModel,
+                          position: widget.matchScoreModel.isKick ? 3 : 2),
                       GoalPositionWidget(
-                          isKick: isKick, position: isKick ? 4 : 1),
+                          matchScoreModel: widget.matchScoreModel,
+                          position: widget.matchScoreModel.isKick ? 4 : 1),
                     ],
                   ),
                 ),
@@ -35,13 +49,17 @@ class GoalWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       GoalPositionWidget(
-                          isKick: isKick, position: isKick ? 5 : 8),
+                          matchScoreModel: widget.matchScoreModel,
+                          position: widget.matchScoreModel.isKick ? 5 : 8),
                       GoalPositionWidget(
-                          isKick: isKick, position: isKick ? 6 : 7),
+                          matchScoreModel: widget.matchScoreModel,
+                          position: widget.matchScoreModel.isKick ? 6 : 7),
                       GoalPositionWidget(
-                          isKick: isKick, position: isKick ? 7 : 6),
+                          matchScoreModel: widget.matchScoreModel,
+                          position: widget.matchScoreModel.isKick ? 7 : 6),
                       GoalPositionWidget(
-                          isKick: isKick, position: isKick ? 8 : 5),
+                          matchScoreModel: widget.matchScoreModel,
+                          position: widget.matchScoreModel.isKick ? 8 : 5),
                     ],
                   ),
                 ),
