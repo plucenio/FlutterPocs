@@ -1,6 +1,8 @@
 import 'dart:math';
+import 'package:eight_bit_penalty/pages/match_result/match_result_page.dart';
 import 'package:flutter/material.dart';
 import '../../models/match_score_model.dart';
+import '../home/home_page.dart';
 import '../match/keeper_match_page.dart';
 import '../match/kicker_match_page.dart';
 
@@ -20,7 +22,6 @@ class _GoalResultPageState extends State<GoalResultPage> {
   @override
   void initState() {
     super.initState();
-    delayToNavigate();
   }
 
   Future delayToNavigate() async {
@@ -50,6 +51,45 @@ class _GoalResultPageState extends State<GoalResultPage> {
     );
   }
 
+  Future navigateToMatchResult(Widget kickResult) async {
+    return await Future.delayed(Duration(seconds: 3), () {
+      return MatchResultPage(
+        matchScoreModel: widget.matchScoreModel,
+        kickResult: kickResult,
+      );
+    });
+  }
+
+  bool checkMatchFinished() {
+    var goalsPlayer1 = widget.matchScoreModel.player1ScoreModel.kicks
+        .where((element) => element == true)
+        .length;
+    var goalsPlayer2 = widget.matchScoreModel.player2ScoreModel.kicks
+        .where((element) => element == true)
+        .length;
+
+    var player1RemainingKicks =
+        5 - widget.matchScoreModel.player1ScoreModel.kicks.length;
+    var player2RemainingKicks =
+        5 - widget.matchScoreModel.player2ScoreModel.kicks.length;
+
+    if (player1RemainingKicks + player2RemainingKicks > 0) {
+      if (goalsPlayer1 + player1RemainingKicks < goalsPlayer2) {
+        return true;
+      }
+      if (goalsPlayer2 + player2RemainingKicks < goalsPlayer1) {
+        return true;
+      }
+    } else {
+      if (widget.matchScoreModel.player1ScoreModel.kicks.length ==
+              widget.matchScoreModel.player2ScoreModel.kicks.length &&
+          goalsPlayer1 != goalsPlayer2) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     var opponentOption = Random().nextInt(7) + 1;
@@ -63,14 +103,32 @@ class _GoalResultPageState extends State<GoalResultPage> {
           ? widget.matchScoreModel.player2ScoreModel.goal()
           : widget.matchScoreModel.player2ScoreModel.fail();
     }
-    return Scaffold(
-      body: Column(
-        children: [
-          Text("""
-Posição selecionada:${widget.position} Posição do oponente: $opponentOption"""),
-          getImage(goal: goal)
-        ],
-      ),
-    );
+    if (checkMatchFinished()) {
+      return FutureBuilder(
+          future: navigateToMatchResult(getImage(goal: goal)),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return snapshot.data;
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          });
+    } else {
+      delayToNavigate();
+      return Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Text("""
+Posição selecionada: ${widget.position}
+Posição do oponente: $opponentOption"""),
+              getImage(goal: goal)
+            ],
+          ),
+        ),
+      );
+    }
   }
 }
