@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttie/fluttie.dart';
+import 'package:lottie/lottie.dart';
 import '../../widgets/my_container.dart';
 import '../../widgets/my_scaffold.dart';
 import '../finding_opponent/finding_match_page.dart';
@@ -9,42 +9,22 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   bool ready = false;
-  FluttieAnimationController controller;
+  //FluttieAnimationController controller;
+  AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
-    getAnimation();
+    //getAnimation();
+    _animationController = AnimationController(vsync: this);
   }
 
   @override
   dispose() {
     super.dispose();
-    controller?.dispose();
-  }
-
-  getAnimation() async {
-    bool canbeused = await Fluttie.isAvailable();
-    if (!canbeused) {
-      print("Deu ruim, não vai rolar gurizão");
-      return;
-    }
-    var instance = Fluttie();
-    var emojiComposition = await instance.loadAnimationFromAsset(
-      "assets/animations/soccer-player.json",
-    );
-    controller = await instance.prepareAnimation(
-      emojiComposition,
-      duration: Duration(seconds: 5),
-    );
-    if (mounted) {
-      setState(() {
-        ready = true;
-        controller.start();
-      });
-    }
+    _animationController.dispose();
   }
 
   void onPressedMethod() {
@@ -55,17 +35,9 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  Widget buildAnimation(BuildContext context) {
-    return Column(
-      children: [FluttieAnimation(controller)],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    Widget contentAnimation =
-        ready ? buildAnimation(context) : CircularProgressIndicator();
-
+    var _screenSize = MediaQuery.of(context).size;
     return MyScaffold(
       appBar: AppBar(
         title: Text('Home page'),
@@ -75,7 +47,17 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              contentAnimation,
+              Lottie.asset(
+                'assets/animations/soccer-player.json',
+                controller: _animationController,
+                onLoaded: (composition) {
+                  _animationController.duration = composition.duration;
+
+                  _animationController.repeat();
+                },
+                width: _screenSize.width * 0.5,
+                height: _screenSize.height * 0.5,
+              ),
               RaisedButton(
                 child: Text('Search match'),
                 onPressed: onPressedMethod,
