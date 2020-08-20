@@ -6,9 +6,13 @@ import '../../goal_result/goal_result_page.dart';
 class GoalPositionWidget extends StatefulWidget {
   final MatchScoreModel matchScoreModel;
   final int position;
+  final Image image;
 
   GoalPositionWidget(
-      {Key key, @required this.matchScoreModel, @required this.position})
+      {Key key,
+      @required this.matchScoreModel,
+      @required this.position,
+      @required this.image})
       : super(key: key);
 
   @override
@@ -25,7 +29,12 @@ class _GoalPositionWidgetState extends State<GoalPositionWidget> {
           height: double.infinity,
           child: RaisedButton(
               color: Colors.white,
-              child: Text('${widget.position}'),
+              child: Column(
+                children: [
+                  widget.image,
+                  Text('${widget.position}'),
+                ],
+              ),
               elevation: 0,
               onPressed: () {
                 Navigator.pushReplacement(

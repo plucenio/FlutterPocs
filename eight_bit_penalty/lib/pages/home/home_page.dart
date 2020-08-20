@@ -1,3 +1,4 @@
+import 'package:eight_bit_penalty/widgets/my_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/my_scaffold.dart';
@@ -23,15 +24,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Home page'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              child: Text('Search match'),
-              onPressed: onPressedMethod,
-            ),
-          ],
+      body: MyContainer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                child: Text('Search match'),
+                onPressed: onPressedMethod,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -49,6 +49,9 @@ class _Player1ScoreWidgetState extends State<Player1ScoreWidget> {
           ),
         );
       }
+      if (widget.playerScoreModel.kicks.length >= 5) {
+        scoreBallList.add(getColorBall());
+      }
     }
     for (var index = 0; index < remainingKicks; index++) {
       scoreBallList.add(getColorBall());
@@ -65,7 +68,6 @@ class _Player1ScoreWidgetState extends State<Player1ScoreWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      // child: ListView.builder(itemBuilder: scoreBallList,)
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

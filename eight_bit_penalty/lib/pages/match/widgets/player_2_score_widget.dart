@@ -49,6 +49,9 @@ class _Player2ScoreWidgetState extends State<Player2ScoreWidget> {
           ),
         );
       }
+      if (widget.playerScoreModel.kicks.length >= 5) {
+        scoreBallList.add(getColorBall());
+      }
     }
     for (var index = 0; index < remainingKicks; index++) {
       scoreBallList.add(getColorBall());

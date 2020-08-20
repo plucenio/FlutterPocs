@@ -17,6 +17,18 @@ class GoalWidget extends StatefulWidget {
 class _GoalWidgetState extends State<GoalWidget> {
   @override
   Widget build(BuildContext context) {
+    var image = widget.matchScoreModel.isKick
+        ? Image.asset(
+            "assets/images/ball.png",
+            height: 30,
+            width: 30,
+          )
+        : Image.asset(
+            "assets/images/glove.png",
+            height: 30,
+            width: 30,
+          );
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -32,16 +44,16 @@ class _GoalWidgetState extends State<GoalWidget> {
                     children: [
                       GoalPositionWidget(
                           matchScoreModel: widget.matchScoreModel,
-                          position: widget.matchScoreModel.isKick ? 1 : 4),
+                          position: widget.matchScoreModel.isKick ? 1 : 3,
+                          image: image),
                       GoalPositionWidget(
                           matchScoreModel: widget.matchScoreModel,
-                          position: widget.matchScoreModel.isKick ? 2 : 3),
+                          position: widget.matchScoreModel.isKick ? 2 : 2,
+                          image: image),
                       GoalPositionWidget(
                           matchScoreModel: widget.matchScoreModel,
-                          position: widget.matchScoreModel.isKick ? 3 : 2),
-                      GoalPositionWidget(
-                          matchScoreModel: widget.matchScoreModel,
-                          position: widget.matchScoreModel.isKick ? 4 : 1),
+                          position: widget.matchScoreModel.isKick ? 3 : 1,
+                          image: image),
                     ],
                   ),
                 ),
@@ -50,16 +62,16 @@ class _GoalWidgetState extends State<GoalWidget> {
                     children: [
                       GoalPositionWidget(
                           matchScoreModel: widget.matchScoreModel,
-                          position: widget.matchScoreModel.isKick ? 5 : 8),
+                          position: widget.matchScoreModel.isKick ? 4 : 6,
+                          image: image),
                       GoalPositionWidget(
                           matchScoreModel: widget.matchScoreModel,
-                          position: widget.matchScoreModel.isKick ? 6 : 7),
+                          position: widget.matchScoreModel.isKick ? 5 : 5,
+                          image: image),
                       GoalPositionWidget(
                           matchScoreModel: widget.matchScoreModel,
-                          position: widget.matchScoreModel.isKick ? 7 : 6),
-                      GoalPositionWidget(
-                          matchScoreModel: widget.matchScoreModel,
-                          position: widget.matchScoreModel.isKick ? 8 : 5),
+                          position: widget.matchScoreModel.isKick ? 6 : 4,
+                          image: image),
                     ],
                   ),
                 ),

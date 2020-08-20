@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../widgets/my_scaffold.dart';
+import 'package:splashscreen/splashscreen.dart';
 import '../home/home_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,24 +11,23 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    delayToNavigate();
-  }
-
-  Future delayToNavigate() async {
-    return await Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
-          return HomePage();
-        }),
-      );
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MyScaffold(
-      body: Center(child: Text('Splash')),
+    return SplashScreen(
+      seconds: 5,
+      image: Image.asset(
+        "assets/images/ball.png",
+        height: 500,
+        width: 500,
+      ),
+      backgroundColor: Colors.green,
+      gradientBackground: LinearGradient(
+          colors: [Colors.green, Colors.green[200]],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter),
+      navigateAfterSeconds: HomePage(),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:eight_bit_penalty/pages/match_result/match_result_page.dart';
+import 'package:eight_bit_penalty/widgets/my_container.dart';
+import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
 import '../../models/match_score_model.dart';
 import '../home/home_page.dart';
@@ -92,7 +94,7 @@ class _GoalResultPageState extends State<GoalResultPage> {
 
   @override
   Widget build(BuildContext context) {
-    var opponentOption = Random().nextInt(7) + 1;
+    var opponentOption = Random().nextInt(5) + 1;
     var goal = (widget.position != opponentOption);
     if (widget.matchScoreModel.isKick) {
       goal
@@ -117,15 +119,17 @@ class _GoalResultPageState extends State<GoalResultPage> {
           });
     } else {
       delayToNavigate();
-      return Scaffold(
-        body: Center(
-          child: Column(
-            children: [
-              Text("""
+      return MyScaffold(
+        body: MyContainer(
+          child: Center(
+            child: Column(
+              children: [
+                Text("""
 Posição selecionada: ${widget.position}
 Posição do oponente: $opponentOption"""),
-              getImage(goal: goal)
-            ],
+                getImage(goal: goal)
+              ],
+            ),
           ),
         ),
       );

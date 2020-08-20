@@ -1,3 +1,4 @@
+import 'package:eight_bit_penalty/widgets/my_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,13 +30,15 @@ class _FindingMatchPageState extends State<FindingMatchPage> {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(),
-            Text('Searching an opponent'),
-          ],
+      body: MyContainer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(),
+              Text('Searching an opponent'),
+            ],
+          ),
         ),
       ),
     );

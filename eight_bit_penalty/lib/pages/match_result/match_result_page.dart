@@ -1,3 +1,4 @@
+import 'package:eight_bit_penalty/widgets/my_container.dart';
 import 'package:flutter/material.dart';
 import '../../models/match_score_model.dart';
 import '../home/home_page.dart';
@@ -19,22 +20,24 @@ class _MatchResultPageState extends State<MatchResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            ScoreWidget(
-              matchScoreModel: widget.matchScoreModel,
-            ),
-            widget.kickResult,
-            Text("Partida finalizada!"),
-            RaisedButton(
-              child: Text('Voltar para o inicio'),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
-              },
-            ),
-          ],
+      body: MyContainer(
+        child: Center(
+          child: Column(
+            children: [
+              ScoreWidget(
+                matchScoreModel: widget.matchScoreModel,
+              ),
+              widget.kickResult,
+              Text("Partida finalizada!"),
+              RaisedButton(
+                child: Text('Voltar para o inicio'),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
