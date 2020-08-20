@@ -33,8 +33,12 @@ class _KeeperMatchPageState extends State<KeeperMatchPage> {
           Expanded(
             flex: 9,
             child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: Image.asset("assets/images/grass.png").image,
+                    fit: BoxFit.cover),
+              ),
               width: double.infinity,
-              color: Colors.green,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

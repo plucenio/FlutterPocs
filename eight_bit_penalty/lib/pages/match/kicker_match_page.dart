@@ -29,8 +29,12 @@ class _KickerMatchPageState extends State<KickerMatchPage> {
           Expanded(
             flex: 9,
             child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: Image.asset("assets/images/grass.png").image,
+                    fit: BoxFit.cover),
+              ),
               width: double.infinity,
-              color: Colors.green,
               child: Padding(
                 padding:
                     const EdgeInsets.only(left: 150, right: 150, bottom: 50),
