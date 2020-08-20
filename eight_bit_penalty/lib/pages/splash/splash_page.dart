@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttie/fluttie.dart';
 import 'package:splashscreen/splashscreen.dart';
 import '../home/home_page.dart';
 
