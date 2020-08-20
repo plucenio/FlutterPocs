@@ -1,12 +1,12 @@
 import 'dart:math';
-import 'package:eight_bit_penalty/pages/match_result/match_result_page.dart';
-import 'package:eight_bit_penalty/widgets/my_container.dart';
-import 'package:eight_bit_penalty/widgets/my_scaffold.dart';
 import 'package:flutter/material.dart';
 import '../../models/match_score_model.dart';
+import '../../widgets/my_container.dart';
+import '../../widgets/my_scaffold.dart';
 import '../home/home_page.dart';
 import '../match/keeper_match_page.dart';
 import '../match/kicker_match_page.dart';
+import '../match/widgets/score_widget.dart';
 
 class GoalResultPage extends StatefulWidget {
   final MatchScoreModel matchScoreModel;
@@ -53,15 +53,6 @@ class _GoalResultPageState extends State<GoalResultPage> {
     );
   }
 
-  Future navigateToMatchResult(Widget kickResult) async {
-    return await Future.delayed(Duration(seconds: 3), () {
-      return MatchResultPage(
-        matchScoreModel: widget.matchScoreModel,
-        kickResult: kickResult,
-      );
-    });
-  }
-
   bool checkMatchFinished() {
     var goalsPlayer1 = widget.matchScoreModel.player1ScoreModel.kicks
         .where((element) => element == true)
@@ -92,9 +83,34 @@ class _GoalResultPageState extends State<GoalResultPage> {
     return false;
   }
 
+  Widget matchResult(Widget kickResult) {
+    return MyScaffold(
+      body: MyContainer(
+        child: Center(
+          child: Column(
+            children: [
+              ScoreWidget(
+                matchScoreModel: widget.matchScoreModel,
+              ),
+              kickResult,
+              Text("Partida finalizada!"),
+              RaisedButton(
+                child: Text('Voltar para o inicio'),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    var opponentOption = Random().nextInt(5) + 1;
+    var opponentOption = Random().nextInt(6) + 1;
     var goal = (widget.position != opponentOption);
     if (widget.matchScoreModel.isKick) {
       goal
@@ -106,17 +122,7 @@ class _GoalResultPageState extends State<GoalResultPage> {
           : widget.matchScoreModel.player2ScoreModel.fail();
     }
     if (checkMatchFinished()) {
-      return FutureBuilder(
-          future: navigateToMatchResult(getImage(goal: goal)),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return snapshot.data;
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          });
+      return matchResult(getImage(goal: goal));
     } else {
       delayToNavigate();
       return MyScaffold(

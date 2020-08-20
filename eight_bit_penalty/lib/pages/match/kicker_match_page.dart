@@ -17,6 +17,8 @@ class KickerMatchPage extends StatefulWidget {
 class _KickerMatchPageState extends State<KickerMatchPage> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width;
+
     return MyScaffold(
       appBar: AppBar(
         title: Text('Kicker View'),
@@ -36,8 +38,8 @@ class _KickerMatchPageState extends State<KickerMatchPage> {
               ),
               width: double.infinity,
               child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 150, right: 150, bottom: 50),
+                padding: EdgeInsets.only(
+                    left: size / 4, right: size / 4, bottom: size / 5),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

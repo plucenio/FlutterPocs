@@ -1,6 +1,5 @@
-import 'package:eight_bit_penalty/widgets/my_container.dart';
 import 'package:flutter/material.dart';
-
+import '../../widgets/my_container.dart';
 import '../../widgets/my_scaffold.dart';
 import '../finding_opponent/finding_match_page.dart';
 

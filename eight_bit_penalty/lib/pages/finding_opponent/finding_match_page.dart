@@ -1,9 +1,9 @@
-import 'package:eight_bit_penalty/widgets/my_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import '../../models/match_score_model.dart';
+import '../../widgets/my_container.dart';
 import '../../widgets/my_scaffold.dart';
-import 'found_opponent_page.dart';
+import '../match/kicker_match_page.dart';
 
 class FindingMatchPage extends StatefulWidget {
   @override
@@ -21,9 +21,12 @@ class _FindingMatchPageState extends State<FindingMatchPage> {
     return await Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
           context,
-          CupertinoPageRoute(
-            builder: (context) => FoundOpponentPage(),
-          ));
+          MaterialPageRoute(
+              // ignore: lines_longer_than_80_chars
+              //Implementar regra de quem entrou na sala primeiro ser o chutador.
+              builder: (context) => KickerMatchPage(
+                    matchScoreModel: MatchScoreModel(),
+                  )));
     });
   }
 
