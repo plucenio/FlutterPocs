@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:poc_consumo_api_json/utils/constants.dart';
 
 class DefaultScaffold extends StatelessWidget {
   final Widget titleWidget;
   final Widget body;
+  final Widget floatingButton;
 
   const DefaultScaffold({
     Key key,
     @required this.titleWidget,
     @required this.body,
+    this.floatingButton,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,8 @@ class DefaultScaffold extends StatelessWidget {
             ),
           ),
           child: body),
+      resizeToAvoidBottomPadding: false,
+      floatingActionButton: floatingButton,
     );
   }
 }

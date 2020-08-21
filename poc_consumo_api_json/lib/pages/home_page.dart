@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:poc_consumo_api_json/i18n/i18n_keys.dart';
+import 'package:poc_consumo_api_json/pages/health_insurance_page.dart';
 import 'package:poc_consumo_api_json/utils/constants.dart';
 import 'widgets/default_scaffold.dart';
 import 'package:poc_consumo_api_json/i18n/home_page.i18n.dart';
@@ -82,21 +83,26 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                   RaisedButton(
-                    color: Colors.amber[300],
-                    child: Row(children: [
-                      Icon(Icons.accessible),
-                      Text("teste"),
-                    ]),
-                    onPressed: () => {
-                      showDialog(
-                        context: context,
-                        child: AlertDialog(
-                          title: Text("Alert"),
-                          actions: [CloseButton()],
+                    child: Row(
+                      children: [
+                        Icon(Icons.healing),
+                        SizedBox(
+                          width: 5,
                         ),
-                      ),
+                        Text(homePageHealthInsurance.i18n),
+                      ],
+                    ),
+                    color: pacificBlueColor,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HealthInsurancePage(),
+                        ),
+                      );
                     },
-                  )
+                  ),
                 ],
               ),
             ),

@@ -25,3 +25,6 @@ const String user_ranking = "Ranking de Usuários";
 const String hospital_ranking = "Ranking de Hospitais";
 const String backgroundSource =
     kIsWeb ? splashScreenFittedSource : splashScreenSource;
+
+//Local Storage boxes
+const String healthInsuranceBoxName = "health_insurances";

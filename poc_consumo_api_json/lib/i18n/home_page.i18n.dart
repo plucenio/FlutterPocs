@@ -8,11 +8,13 @@ extension Localization on String {
           homePageUserRankingText: "User Ranking",
           homePageHospitalRanking: "Hospital Ranking",
           homePageCarousel: "Carousel Demo",
+          homePageHealthInsurance: "Lista de planos de saúde",
         },
         "pt_br": {
           homePageUserRankingText: "Ranking de Usuários",
           homePageHospitalRanking: "Ranking de Hospitais",
           homePageCarousel: "Carrossel Demo",
+          homePageHealthInsurance: "Lista de planos de saúde",
         }
       };
 
