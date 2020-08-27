@@ -9,7 +9,8 @@ class HealthInsuranceStateManagement with ChangeNotifier {
   List get healthInsuranceList => _healthInsuranceList;
 
   Future<Box> openHealthInsuranceBox() async {
-    return await Hive.openBox<HealthInsurance>(healthInsuranceBoxName);
+    return await Hive.openBox<HealthInsurance>(healthInsuranceBoxName,
+        encryptionKey: Hive.generateSecureKey());
   }
 
   Box getHealthInsuranceBox() {

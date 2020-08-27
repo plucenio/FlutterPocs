@@ -36,6 +36,11 @@ dependencies:
   provider: ^4.3.2+1
   path_provider: ^1.6.11
 
+  freezed: ^0.11.6
+  flutter_bloc: ^6.0.2
+  freezed_annotation: ^0.11.0+1
+  dio: ^3.0.10
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
